@@ -1,3 +1,4 @@
+// Affichage Card user detail
 function detailUserTemplate(data) {
     const { id, name, portrait, city, country, tagline } = data;
 
@@ -35,7 +36,8 @@ function detailUserTemplate(data) {
     return { name, picture, getDetailDOM }
 }
 
-function detailMediaTemplate(data) {
+// Affichage média
+function detailMediaTemplate(data, index) {
     const { id, image, video, title, date, likes } = data;
 
     const picture = `assets/media/${image}`;
@@ -50,7 +52,8 @@ function detailMediaTemplate(data) {
 
         const button = document.createElement('button');
         button.classList.add('button-card');
-        button.setAttribute("onclick", 'lightboxOpen(this)');
+        button.setAttribute("onclick", 'lightboxDialog.showModal(); slide('+index+')');
+
 
         const img = document.createElement( 'img' );
         const mp4 = document.createElement( 'video' );
@@ -60,14 +63,12 @@ function detailMediaTemplate(data) {
             img.setAttribute("alt", title);
         } else {
             mp4.setAttribute("alt", title);
-            mp4.setAttribute("tabindex", 0);
             mp4.src = movie;
             mp4.autoplay = false;
             mp4.controls = false;
             mp4.height = 350;
             mp4.width = 350;
         }
-
 
         const divText = document.createElement('div');
         divText.classList.add('textMedia');
@@ -104,6 +105,7 @@ function detailMediaTemplate(data) {
     return { name, image, getMediaDOM}
 }
 
+// Affichage case like et prix
 function detailTemplate(totalLikes, tarif) {
     const photographersDetail = document.querySelector(".photograph-detail");
     const divLikes = document.createElement('div');

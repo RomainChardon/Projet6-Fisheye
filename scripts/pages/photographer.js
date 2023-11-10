@@ -1,5 +1,18 @@
-async function getPhotographers() {
+init();
 
+async function init() {
+    // Récupère les datas des photographes
+    const liste  = await getPhotographers();
+    const user = liste.user[0];
+    const media = liste.media;
+
+    // Card user
+    await displayUser(user);
+    // Liste media
+    await displayMedia(media, user);
+}
+
+async function getPhotographers() {
     // Récuperer l'id de l'url
     let params = new URL(document.location).searchParams;
     let userId = parseInt(params.get('id'));
@@ -19,6 +32,8 @@ async function getPhotographers() {
         
         console.error(error);
     }
+
+
     return (liste)
 }
 
@@ -42,13 +57,13 @@ async function displayMedia(medias, user) {
         return accumulateur + valeurCourante.likes;
     }, 0);
 
-        medias.forEach((media) => {
 
-        // Récuperation des données média puis création de l'affichage
-        const detailMedia = detailMediaTemplate(media);
-        const detailMediaDOM = detailMedia.getMediaDOM();
-        photographersHeader.appendChild(detailMediaDOM);
-    });
+        medias.forEach((media) => {
+            // Récuperation des données média puis création de l'affichage
+            const detailMedia = detailMediaTemplate(media, medias.indexOf(media));
+            const detailMediaDOM = detailMedia.getMediaDOM();
+            photographersHeader.appendChild(detailMediaDOM);
+        });
 
     await detailTemplate(totalLikes, user.price);
 }
@@ -105,15 +120,3 @@ function resetMedia() {
         photographersDetail.removeChild(photographersDetail.firstChild);
     }
 }
-
-async function init() {
-    // Récupère les datas des photographes
-    const liste  = await getPhotographers();
-    const user = liste.user[0];
-    const media = liste.media;
-    await displayUser(user);
-    await displayMedia(media, user);
-}
-
-init();
-

@@ -1,11 +1,15 @@
+// Affiche les photographes
 function photographerTemplate(data) {
     const { id, name, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
+        const a = document.createElement('a');
+        a.setAttribute('href', "photographer.html?id=" + id);
+        a.setAttribute('tabindex', '0');
+
         const article = document.createElement('article');
-        article.setAttribute('onclick', 'linkURL('+id+')');
         article.setAttribute('aria-label', 'Lien vers la page de '+name);
 
         const div = document.createElement('div');
@@ -35,8 +39,9 @@ function photographerTemplate(data) {
         div.appendChild(pZone);
         div.appendChild(pTagline);
         div.appendChild(pPrice);
-        article.appendChild(div)
-        return (article);
+        article.appendChild(div);
+        a.appendChild(article);
+        return (a);
     }
     return { name, picture, getUserCardDOM }
 }
