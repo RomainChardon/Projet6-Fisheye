@@ -43,8 +43,7 @@ async function displayUser(user) {
 
     // Récuperation des données photographe puis création de l'affichage
     const detailUser = detailUserTemplate(user);
-    const detailUserDOM = detailUser.getDetailDOM();
-    photographersHeader.appendChild(detailUserDOM);
+    photographersHeader.appendChild(detailUser.getDetailDOM());
 }
 
 // Affichage des médias
@@ -61,8 +60,7 @@ async function displayMedia(medias, user) {
         medias.forEach((media) => {
             // Récuperation des données média puis création de l'affichage
             const detailMedia = detailMediaTemplate(media, medias.indexOf(media));
-            const detailMediaDOM = detailMedia.getMediaDOM();
-            photographersHeader.appendChild(detailMediaDOM);
+            photographersHeader.appendChild(detailMedia.getMediaDOM());
         });
 
     await detailTemplate(totalLikes, user.price);
