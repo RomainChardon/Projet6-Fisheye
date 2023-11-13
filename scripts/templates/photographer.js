@@ -7,7 +7,6 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const a = document.createElement('a');
         a.setAttribute('href', "photographer.html?id=" + id);
-        a.setAttribute('tabindex', '0');
 
         const article = document.createElement('article');
         article.setAttribute('aria-label', 'Lien vers la page de '+name);
