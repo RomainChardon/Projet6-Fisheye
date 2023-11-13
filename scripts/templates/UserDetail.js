@@ -1,8 +1,8 @@
 // Affichage Card user detail
 function detailUserTemplate(data) {
-    const { id, name, portrait, city, country, tagline } = data;
+    const photograph = new Photograph(data);
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `assets/photographers/${photograph.portrait}`;
 
     function getDetailDOM() {
         const article = document.createElement('article');
@@ -12,19 +12,19 @@ function detailUserTemplate(data) {
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", name);
+        img.setAttribute("alt", photograph.name);
 
         const h1 = document.createElement( 'h1' );
         h1.classList.add('title-name');
-        h1.textContent = name;
+        h1.textContent = photograph.name;
 
         const pZone = document.createElement('p');
         pZone.classList.add('text-zone');
-        pZone.textContent = city +', '+ country;
+        pZone.textContent = photograph.city +', '+ photograph.country;
 
         const pTagline = document.createElement('p');
         pTagline.classList.add('text-tag');
-        pTagline.textContent = tagline;
+        pTagline.textContent = photograph.tagline;
 
         article.appendChild(img);
         div.appendChild(h1);
@@ -38,17 +38,17 @@ function detailUserTemplate(data) {
 
 // Affichage média
 function detailMediaTemplate(data, index) {
-    const { id, image, video, title, date, likes } = data;
+    const media = new Media(data);
 
-    const picture = `assets/media/${image}`;
-    const movie = `assets/media/${video}`;
+    const picture = `assets/media/${media.image}`;
+    const movie = `assets/media/${media.video}`;
     const urlLike = 'assets/icons/like.svg';
 
     function getMediaDOM() {
 
         const div = document.createElement('div');
         div.classList.add('cardMedia');
-        div.setAttribute("alt", "show img " + title );
+        div.setAttribute("alt", "show img " + media.title );
 
         const button = document.createElement('button');
         button.classList.add('button-card');
@@ -58,11 +58,11 @@ function detailMediaTemplate(data, index) {
         const img = document.createElement( 'img' );
         const mp4 = document.createElement( 'video' );
 
-        if (image) {
+        if (media.image) {
             img.setAttribute("src", picture);
-            img.setAttribute("alt", title);
+            img.setAttribute("alt", media.title);
         } else {
-            mp4.setAttribute("alt", title);
+            mp4.setAttribute("alt", media.title);
             mp4.src = movie;
             mp4.autoplay = false;
             mp4.controls = true;
@@ -74,14 +74,14 @@ function detailMediaTemplate(data, index) {
         divText.classList.add('textMedia');
 
         const h2 = document.createElement( 'h2' );
-        h2.textContent = title;
+        h2.textContent = media.title;
 
         const divLike = document.createElement('div');
         divLike.classList.add('like-container');
 
         const p = document.createElement('p');
         p.classList.add('text-like');
-        p.textContent = likes;
+        p.textContent = media.likes;
 
         const icon = document.createElement('img');
         icon.setAttribute("src", urlLike);
@@ -89,7 +89,7 @@ function detailMediaTemplate(data, index) {
         icon.setAttribute('onclick', 'addLikes(this)');
         icon.classList.add('like-icon');
 
-        if (image) {
+        if (media.image) {
             button.appendChild(img);
         } else {
             button.appendChild(mp4);
@@ -102,7 +102,7 @@ function detailMediaTemplate(data, index) {
         div.appendChild(divText);
         return (div);
     }
-    return { name, image, getMediaDOM}
+    return {getMediaDOM}
 }
 
 // Affichage case like et prix

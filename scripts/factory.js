@@ -1,11 +1,22 @@
-let Photograph = class {
-    constructor(id, name, portrait, city, country, tagline, price) {
-        this.id = id;
-        this.name = name;
-        this.portrait = portrait;
-        this.city = city;
-        this.country = country;
-        this.tagline = tagline;
-        this.price = price;
+class Photograph {
+    constructor(data) {
+        this.id = data.id;
+        this.name = data.name;
+        this.portrait = data.portrait;
+        this.city = data.city;
+        this.country = data.country;
+        this.tagline = data.tagline;
+        this.price = data.price;
+    }
+}
+
+class Media {
+    constructor(data) {
+        this.id = data.id;
+        this.image = data.image;
+        this.video = data.video;
+        this.title = data.title;
+        this.date = data.date;
+        this.likes = data.likes;
     }
 }
