@@ -16,22 +16,15 @@ function slide(n) {
         "keydown",
         (event) => {
             if (event.key === "ArrowLeft") {
-                if (document.querySelector(".lightbox").style.display === 'flex') {
-                    prevSlide();
-
-                }
+                prevSlide();
             }
 
             if (event.key === "ArrowRight") {
-                if (document.querySelector(".lightbox").style.display === 'flex') {
-                    nextSlide();
-                }
+                nextSlide();
             }
 
             if (event.key === "Escape") {
-                if (document.querySelector(".lightbox").style.display === 'flex') {
-                    lightboxClose();
-                }
+                lightboxClose();
             }
 
         },
