@@ -110,11 +110,6 @@ function resetMedia() {
     const photographersHeader = document.querySelector(".photograph-media");
     const photographersDetail = document.querySelector(".photograph-detail");
 
-    while (photographersHeader.hasChildNodes()) {
-        photographersHeader.removeChild(photographersHeader.firstChild);
-    }
-
-    while (photographersDetail.hasChildNodes()) {
-        photographersDetail.removeChild(photographersDetail.firstChild);
-    }
+    photographersHeader.innerHTML = ' ';
+    photographersDetail.innerHTML = ' ';
 }

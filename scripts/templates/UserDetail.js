@@ -65,7 +65,7 @@ function detailMediaTemplate(data, index) {
             mp4.setAttribute("alt", title);
             mp4.src = movie;
             mp4.autoplay = false;
-            mp4.controls = false;
+            mp4.controls = true;
             mp4.height = 350;
             mp4.width = 350;
         }
